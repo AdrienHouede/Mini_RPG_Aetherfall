@@ -53,3 +53,20 @@ class InventoryFacade:
         
         print("Cet objet ne peut pas être équipé")
         return False
+
+    def unequip(self, type_item):
+        if type_item == "weapon" and self.equipped_weapon:
+            self.items.append(self.equipped_weapon)
+            self.character.attack -= self.equipped_weapon.attack
+            print(f"Déséquipé {self.equipped_weapon.name}")
+            self.equipped_weapon = None
+            return True
+        elif type_item == "armor" and self.equipped_armor:
+            self.items.append(self.equipped_armor)
+            self.character.defense -= self.equipped_armor.defense
+            print(f"Déséquipé {self.equipped_armor.name}")
+            self.equipped_armor = None
+            return True
+        
+        print(f"Rien à déséquiper pour {type_item}")
+        return False
