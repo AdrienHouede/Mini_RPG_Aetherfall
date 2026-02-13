@@ -1,6 +1,8 @@
-from Combat.CoefDamage import CoefDamage
+from combat.CoefDamage import CoefDamage
+from abc import ABC, abstractmethod
 
-class Personnages:
+class Personnage(ABC):
+    @abstractmethod
     def __init__(self, defense, attack, speed, critical):
         self.hp = 100
         self.defense = defense
@@ -8,21 +10,21 @@ class Personnages:
         self.speed = speed
         self.critical = critical
 
-    def checkDamage(self, damage):
+    def check_damage(self, damage):
         if damage < 0:
             damage = 0
         return damage
 
-    def makeAttack(self, target):
+    def make_attack(self, target):
         damage = self.attack - target.defense
-        damage = CoefDamage.calculDamage(damage)
+        damage = CoefDamage.calcul_damage(damage)
         target.hp -= damage
         return damage
 
-    def useItem(self, item):
+    def use_item(self, item):
         attribute = "hp" if item.type == "heal" else item.type
         if hasattr(self, attribute):
             setattr(self, attribute, getattr(self, attribute) + item.value)
 
-    def makeDefense(self, value):
+    def make_defense(self, value):
         self.defense += value

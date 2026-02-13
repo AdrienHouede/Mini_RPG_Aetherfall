@@ -1,18 +1,18 @@
-from Personnage import Personnages
+from personnages.personnage import Personnage
 
-class Guerrier(Personnages):
+class Guerrier(Personnage):
     def __init__(self):
         super().__init__(defense=10, attack=1.5, speed=5, critical=0.1)
 
-    def powerfulStrike(self, target):
+    def powerful_strike(self, target):
         damage = self.attack * 2 - target.defense
-        damage = self.checkDamage(damage)
+        damage = self.check_damage(damage)
         target.hp -= damage
         return damage
 
-    def heroicCharge(self, target):
+    def heroic_charge(self, target):
         damage = self.attack * 1.5 - target.defense
-        damage = self.checkDamage(damage)
+        damage = self.check_damage(damage)
         target.hp -= damage
         self.defense += 5
         return damage
