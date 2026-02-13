@@ -1,15 +1,14 @@
 from Personnage import Personnages
 
 class Mage(Personnages):
-    def __init__(self, pv, force, defense, attaque, vitesse, critique):
-        super().__init__(pv, force, defense, attaque, vitesse, critique)
-        self.attaque = 2
+    def __init__(self):
+        super().__init__(defense=5, attack=2, speed=7, critical=0.05)
 
-    def bouleFeu(self, cible):
-        degats = self.force * self.attaque * 1.5 - cible.defense
-        self.checkDamage(degats)
-        cible.pv -= degats
-        return degats
-    
-    def bouclierArcanique(self, valeur):
-        self.defense += valeur
+    def fireball(self, target):
+        damage = self.strength * self.attack * 1.5 - target.defense
+        damage = self.checkDamage(damage)
+        target.hp -= damage
+        return damage
+
+    def arcaneShield(self, value):
+        self.defense += value
