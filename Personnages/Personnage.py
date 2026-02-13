@@ -1,7 +1,8 @@
+from Combat.CoefDamage import CoefDamage
+
 class Personnages:
     def __init__(self, defense, attack, speed, critical):
         self.hp = 100
-        self.strength = 10
         self.defense = defense
         self.attack = attack
         self.speed = speed
@@ -13,8 +14,8 @@ class Personnages:
         return damage
 
     def makeAttack(self, target):
-        damage = self.strength * self.attack - target.defense
-        damage = self.checkDamage(damage)
+        damage = self.attack - target.defense
+        damage = CoefDamage.calculDamage(damage)
         target.hp -= damage
         return damage
 
