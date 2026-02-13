@@ -6,5 +6,6 @@ class Wolf(BaseEnemy):
         super().__init__(lvl)
 
     def multiple_attacks(self, player):
-        damage = CoefDamage.calculDamage((self.attack * 0.8) * 3 - player.defense)
-        return player.pv - damage
+        damage = CoefDamage.calcul_damage((self.attack * 0.8) * 3 - player.defense)
+        player.hp -= damage
+        return damage

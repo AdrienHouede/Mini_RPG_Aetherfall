@@ -1,4 +1,5 @@
 from combat.coef_damage import CoefDamage
+from combat.status_manager import StatusManager
 from abc import ABC, abstractmethod
 
 class Personnage(ABC):
@@ -9,6 +10,7 @@ class Personnage(ABC):
         self.attack = attack
         self.speed = speed
         self.critical = critical
+        self.status_manager = StatusManager()
 
     def check_damage(self, damage):
         if damage < 0:
@@ -28,3 +30,15 @@ class Personnage(ABC):
 
     def make_defense(self, value):
         self.defense += value
+
+    def add_status(self, status):
+        return self.status_manager.add_status(status)
+
+    def process_statuses(self, trigger, context=None):
+        return self.status_manager.process_statuses(self, trigger, context)
+
+    def tick_statuses(self):
+        return self.status_manager.tick_all_statuses(self)
+
+    def is_stunned(self):
+        return self.status_manager.is_stunned()
