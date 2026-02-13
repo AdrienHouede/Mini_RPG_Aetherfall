@@ -1,4 +1,4 @@
-from combat.CoefDamage import CoefDamage
+from combat.coef_damage import CoefDamage
 from abc import ABC, abstractmethod
 
 class Personnage(ABC):
