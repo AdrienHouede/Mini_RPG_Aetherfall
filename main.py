@@ -1,12 +1,8 @@
-from personnages.guerrier import Guerrier
-from personnages.mage import Mage
-from personnages.voleur import Voleur
+from game_facade import GameFacade
 
 def main():
-    print("Welcome to the mini RPG Aetherfall!")
-    warrior = Guerrier()
-    mage = Mage()
-    rogue = Voleur()
+    game = GameFacade()
+    game.start_game()
 
 
 if __name__ == "__main__":
