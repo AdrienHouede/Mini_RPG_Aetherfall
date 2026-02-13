@@ -1,4 +1,5 @@
 from combat.coef_damage import CoefDamage
+from inventory.inventory import InventoryFacade
 from abc import ABC, abstractmethod
 
 class Personnage(ABC):
@@ -9,7 +10,7 @@ class Personnage(ABC):
         self.attack = attack
         self.speed = speed
         self.critical = critical
-        self.inventory = {}
+        self.inventory = InventoryFacade(self)
 
     def check_damage(self, damage):
         if damage < 0:
