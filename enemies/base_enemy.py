@@ -14,3 +14,15 @@ class BaseEnemy:
         damage = CoefDamage.calcul_damage(self.attack - player.defense)
         player.hp -= damage
         return damage
+
+    def add_status(self, status):
+        return self.status_manager.add_status(status)
+
+    def process_statuses(self, trigger, context=None):
+        return self.status_manager.process_statuses(self, trigger, context)
+
+    def tick_statuses(self):
+        return self.status_manager.tick_all_statuses(self)
+
+    def is_stunned(self):
+        return self.status_manager.is_stunned()

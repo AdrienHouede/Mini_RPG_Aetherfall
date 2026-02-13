@@ -31,19 +31,14 @@ class Personnage(ABC):
     def make_defense(self, value):
         self.defense += value
 
-    # Status management delegation methods
     def add_status(self, status):
-        """Add a status effect to this character"""
         return self.status_manager.add_status(status)
 
     def process_statuses(self, trigger, context=None):
-        """Process statuses at a given trigger timing"""
         return self.status_manager.process_statuses(self, trigger, context)
 
     def tick_statuses(self):
-        """Decrement duration on all statuses"""
         return self.status_manager.tick_all_statuses(self)
 
     def is_stunned(self):
-        """Check if character is stunned"""
         return self.status_manager.is_stunned()

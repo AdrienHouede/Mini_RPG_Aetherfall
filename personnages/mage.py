@@ -1,4 +1,6 @@
 from personnages.personnage import Personnage
+from combat.status_effects import ShieldStatus
+
 
 class Mage(Personnage):
     def __init__(self):
@@ -10,5 +12,7 @@ class Mage(Personnage):
         target.hp -= damage
         return damage
 
-    def arcane_shield(self, value):
-        self.defense += value
+    def arcane_shield(self, target):
+        shield = ShieldStatus(shield_points=20, duration=3)
+        target.add_status(shield)
+        return 0
