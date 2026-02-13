@@ -6,6 +6,7 @@ class BossP1(BaseEnemy, ):
         super().__init__(lvl)
 
     def kameamea(self, player):
-        damage = CoefDamage.calculDamage(self.attack * 2)
-        player.damage -= 10
-        return player.pv - damage, player.damage
+        damage = CoefDamage.calcul_damage(self.attack * 2)
+        player.defense -= 10
+        player.hp -= damage
+        return damage
