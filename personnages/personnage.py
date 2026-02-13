@@ -9,6 +9,7 @@ class Personnage(ABC):
         self.attack = attack
         self.speed = speed
         self.critical = critical
+        self.inventory = {}
 
     def check_damage(self, damage):
         if damage < 0:
